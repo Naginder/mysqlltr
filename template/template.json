@@ -24,8 +24,7 @@
         },
         "_artifactsLocation": {
             "type": "string",
-            "defaultValue": ""
-            //"defaultValue": "[deployment().properties.templateLink.uri]"
+            "defaultValue": "[deployment().properties.templateLink.uri]"
         }
     },
     "variables": {},
@@ -74,7 +73,7 @@
                 "logActivityTrace": 0,
                 "runbookType": "PowerShell",
                 "publishContentLink": {
-                    "uri": "[uri(parameters('_artifactsLocation'), concat('scripts/backupmysql.ps1'))]",
+                    "uri": "[uri(parameters('_artifactsLocation'), concat('runbook/backupmysqldb.ps1'))]",
                     "version": "1.0.0.0"
                 }
             }

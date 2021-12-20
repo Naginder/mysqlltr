@@ -8,3 +8,6 @@ this template will deploy the automation account, blob storage, managed identity
 2. provide parameters to the runbook and execute.
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FNaginder%2Fmysqlltr%2Fmain%2Ftemplate%2Ftemplate.json)
+
+
+In case if there is a need to host the docker image in your own repo, you can use the dockerfile to build your own docker and host it in your registry.

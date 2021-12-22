@@ -24,8 +24,7 @@
         },
         "_artifactsLocation": {
             "type": "string",
-            "defaultValue": ""
-            //"defaultValue": "[deployment().properties.templateLink.uri]"
+            "defaultValue": "[deployment().properties.templateLink.uri]"
         }
     },
     "variables": {},

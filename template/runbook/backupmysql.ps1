@@ -31,7 +31,7 @@ $datetimestr=get-date -format "yyyyMMddhhmmss"
 $filename="--result-file=/data/backups/dumps"+$datetimestr+".sql"
 
 #get storage keys
-$storagekey=((Get-AzStorageAccountKey -ResourceGroupName $rgname -AccountName saltrmysqlbackup) | Where-object {$_.KeyName -eq "Key1"}).value
+$storagekey=((Get-AzStorageAccountKey -ResourceGroupName $rgname -AccountName $storagename) | Where-object {$_.KeyName -eq "Key1"}).value
 #create mount object as backup volume in container
 $volumemount=New-AzContainerInstanceVolumeMountObject -Name "backups" -MountPath "/data/backups/" -ReadOnly $false
 #create new volume on the mount object from the azure fileshare

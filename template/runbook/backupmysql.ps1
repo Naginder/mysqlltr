@@ -9,6 +9,8 @@ Param(
     [String] $username,
     [Parameter(Mandatory = $true)]
     [String] $password,
+	[Parameter(Mandatory = $true)]
+    [String] $dbnames,
     [Parameter(Mandatory = $true)]
     [String] $storagename,
     [Parameter(Mandatory = $true)]
@@ -40,7 +42,7 @@ $volume=New-AzContainerGroupVolumeObject -Name "backups" -AzureFileShareName $ba
         -AzureFileStorageAccountKey (ConvertTo-SecureString $storagekey -AsPlainText -Force)
 #create container object
 $container = New-AzContainerInstanceObject -Name mysqldumpci1 -Image schnitzler/mysqldump -VolumeMount $volumemount `
-            -Command "mysqldump","--opt","--single-transaction",--host=$hostname,--user=$username,--password=$password,$filename,"--all-databases","--force"
+            -Command "mysqldump","--opt","--single-transaction",--host=$hostname,--user=$username,--password=$password,$filename,"--databases",$dbnames,"--force"
 #deploy the container in azure container groups
 Write-Output "creating container"
 $containergroup=New-AzContainerGroup -ResourceGroupName $rgname -Name mysqldumpci1  -Location eastus -Container $container -Volume $volume `

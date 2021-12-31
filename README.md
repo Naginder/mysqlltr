@@ -28,8 +28,9 @@ After this the runbook can be executed to take the backup. Parameters are needed
 3. HOSTNAME - This is the Azure DB for MySQL Hostname
 4. USERNAME - Username to connect to Azure DB for MySQL Host
 5. PASSWORD - Password of the above user to connect to Azure DB for MySQL Host
-6. STORAGENAME - Storage account name deployed by the template
-7. BACKUPFILESHARE - Fileshare name where the backup will be placed, this is created in the above storage account.
+6. DBNAMES - Name of the database/s to backup. For more than one, provide the space seperate names
+7. STORAGENAME - Storage account name deployed by the template
+8. BACKUPFILESHARE - Fileshare name where the backup will be placed, this is created in the above storage account.
 
 provide the above values and execute the runbook. Once the runbook finishes, it will show the status and logs from the Container instance which can be used to debug in case of any errors.
 

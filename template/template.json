@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "storageAccounts_ltrmysqlbackup_name": {
-            "defaultValue": "saltrmysqlbackup",
+            "defaultValue": "[concat('saltr', uniquestring(resourceGroup().id))]",
             "type": "String"
         },
         "automationAccounts_aamysqlltr_name": {

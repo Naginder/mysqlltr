@@ -26,7 +26,7 @@ on the azure role assignments blade, click on add role assignment
 For the container to be able to access the MySQL instance there are multiple ways to allow the same.
 
 1. You can enable "Allow access to Azure services" option under the Connection security tab however this allows all resources including other subscriptions so this should be enabled with care
-2. You can also deploy the ACI into existing or new Vnet which in case can be the Vnet where MySQL (flexible server) is deployed or can be peered to the same. For single single, the ACI could be deployed into the Vnet where private link is created to allow access.
+2. You can also deploy the ACI into existing or new Vnet which in case can be the Vnet where MySQL (flexible server) is deployed or can be peered to the same. For single server, the ACI could be deployed into the Vnet where private link is created to allow access.
 3. For single server you can deploy the ACI such that it exposes the IP externally, which can be added to the firewall of the MySQL instance 
  
 After this the runbook can be executed to take the backup. Parameters are needed to execute the runbook. Following will explain each parameter and its value.

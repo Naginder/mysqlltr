@@ -31,6 +31,18 @@ Write-Output "Successfully connected with Automation account's Manag
 
 $datetimestr=get-date -format "yyyyMMddhhmmss"
 $filename="--result-file=/data/backups/dumps"+$datetimestr+".sql"
+$h1 = "--host="+$hostname
+$user = "--user="+$username
+$pwd = "--password="+$password
+$dbnamearray = $dbnames.split(" ")
+
+$cmd = "mysqldump","--opt","--single-transaction",$h1,$user,$pwd,$filename,"--databases"
+
+foreach ($names in $dbnamearray)
+{
+    $cmd+=$names
+
+}
 
 #get storage keys
 $storagekey=((Get-AzStorageAccountKey -ResourceGroupName $rgname -AccountName $storagename) | Where-object {$_.KeyName -eq "Key1"}).value
@@ -42,7 +54,7 @@ $volume=New-AzContainerGroupVolumeObject -Name "backups" -AzureFileShareName $ba
         -AzureFileStorageAccountKey (ConvertTo-SecureString $storagekey -AsPlainText -Force)
 #create container object
 $container = New-AzContainerInstanceObject -Name mysqldumpci1 -Image schnitzler/mysqldump -VolumeMount $volumemount `
-            -Command "mysqldump","--opt","--single-transaction",--host=$hostname,--user=$username,--password=$password,$filename,"--databases",$dbnames,"--force"
+            -Command $cmd
 #deploy the container in azure container groups
 Write-Output "creating container"
 $containergroup=New-AzContainerGroup -ResourceGroupName $rgname -Name mysqldumpci1  -Location eastus -Container $container -Volume $volume `
@@ -64,6 +76,7 @@ while ($true)
 	else
 	{
 		Write-Output $status
+        start-sleep -seconds 30
 	}
 }
 

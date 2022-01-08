@@ -62,7 +62,7 @@ $containergroup=New-AzContainerGroup -ResourceGroupName $rgname -Name mysqldumpc
 
 while ($true)
 {
-	$status=(get-azcontainergroup -name mysqldumpci1 -resourcegroupname rgtest1 | select-object -property @{name="Status";expression={$_.InstanceViewState}}).Status
+	$status=(get-azcontainergroup -name mysqldumpci1 -resourcegroupname $rgname | select-object -property @{name="Status";expression={$_.InstanceViewState}}).Status
 	if ($status -eq "Failed")
 	{
 		Write-Output "Container in Failed State, Please check the logs below"

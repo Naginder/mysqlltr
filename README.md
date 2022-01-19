@@ -1,6 +1,6 @@
 # Solution for automating Azure DB for MySQL backups for long term retention using serverless compute
 
-The solution provides the capability to store backups of Azure DB for MySQL databases for long term retention using azure container instances.
+This solution provides the capability to store backups of Azure DB for MySQL databases for long term retention using azure container instances.
 
 In many cases storing database backups for long term is required for several reasons such as auditing, compliance or data archiving.
 
